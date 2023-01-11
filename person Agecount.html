@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Caculte</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .main {
+
+        border: 1px solid black;
+        height: 100vh;
+        width: 100vw;
+        background-color: bisque;
+    }
+
+    .inner {
+
+        border: 1px solid red;
+        height: 400px;
+        width: 400px;
+        margin: auto;
+        border-radius: 10px;
+        background-color: rgb(209, 152, 212);
+    }
+
+    h1 {
+
+        text-align: center;
+    }
+
+    label {
+
+        margin-left: 100px;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+    }
+
+    input {
+
+        margin-left: 100px;
+        margin-top: 10px;
+        padding: 10px;
+        width: 200px;
+    }
+
+    #btn {
+
+        font-size: 1.5rem;
+        background-color: brown;
+        border-radius: 20px;
+        cursor: pointer;
+    }
+
+    #result {
+
+        margin-left: 110px;
+        color: white;
+    }
+</style>
+
+<body>
+
+    <div class="main">
+
+        <div class="inner">
+
+            <h1>Age Calculate</h1>
+
+            <form>
+                <label for="Age">Enter Your Date Of Birth</label><br>
+                <input type="date" name="number" id="number"><br><br>
+                <div id="result"></div>
+
+                <input type="button" value="Calculate" onclick="cal()" id="btn">
+            </form>
+
+
+
+        </div>
+    </div>
+
+
+    <script>
+
+        // function cal() {
+
+        //     var userinput;
+        //     var dob;
+        //     var month;
+        //     var age;
+        //     var year;
+
+
+        //     var userinput = document.getElementById("number").value;
+
+        //     var dob = new Date(userinput);
+
+
+        //     if (userinput == undefined || userinput == "") {
+
+        //         alert(" Choose the Date please !")
+        //         return false
+        //     }
+        //     else {
+
+        //         var month = Date.now() - dob.getTime();
+
+        //         var age = new Date(month);
+
+        //         var year = age.getUTCFullYear();
+
+        //         var age = Math.abs(year - 1970);
+
+        //         document.getElementById("result").innerHTML = "Age is " + age + " year complected " + month;
+
+        //     }
+
+
+
+        // }
+
+
+
+
+        function cal() {
+
+            var userinput = document.getElementById("number").value;
+
+            var dob = new Date(userinput);
+
+            if (userinput == undefined || userinput == "") {
+
+                alert(" Choose the Date please !")
+                return false
+            }
+            else {
+
+                // user input date 
+                var dobdobyear = dob.getFullYear();
+                var dobdobmonth = dob.getMonth();
+                var dobdobdate = dob.getDate();
+
+
+                // user currrnt date 
+                var now = new Date();
+
+                var currentyear = now.getFullYear();
+                var currentmonth = now.getMonth();
+                var currentdate = now.getDate();
+
+
+                // age collect variabel use user 
+
+                var age = {};
+                var agestring = "";
+            
+                // get year 
+
+                var yearage = currentyear -dobdobyear;
+             
+                // get month
+
+                if(currentmonth >= dobdobmonth){
+
+                    var monthage = currentmonth -dobdobmonth;
+                    
+                }
+                else{
+
+                    yearage--;
+
+                    var monthage = 12 + currentmonth -dobdobmonth;
+                }
+                
+                // get days 
+
+                if(currentdate >= dobdobdate){
+
+                    var dateage = currentdate -dobdobdate;
+
+                }
+                else{
+
+                    monthage--;
+
+                    var dateage = 31 + currentdate -dobdobdate;
+
+                    if(monthage < 0 ){
+
+                        monthage = 11;
+
+                        yearage--;
+                    }
+                }
+
+                // single variale 
+
+                age = {
+
+                    years : yearage,
+                    months : monthage,
+                    days : dateage
+
+                };
+
+                if((age .years > 0) && (age.months > 0 && age.days >0))
+
+                var agestring = age.years + " years complected  " +age.months +" months " +age.days +" days "
+
+                document.getElementById("result").innerHTML= agestring;
+                
+
+            }
+
+        }
+    </script>
+</body>
+
+</html>
